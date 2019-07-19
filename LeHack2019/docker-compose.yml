@@ -1,0 +1,12 @@
+version: "3"
+services:
+  redis:
+    image: "redis:latest"
+  php:
+    image: "wyveo/nginx-php-fpm:latest"
+    ports:
+      - "4444:80"
+    volumes:
+      - "./challenge:/usr/share/nginx/html"
+      - "./conf:/etc/nginx/conf.d"
+      - "./emails/:/tmp/emails"
